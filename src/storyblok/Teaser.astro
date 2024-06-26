@@ -1,0 +1,11 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+
+const { blok } = Astro.props;
+---
+
+<div
+  class="grid place-items-center h-[400px] text-black text-5xl"
+  {...storyblokEditable(blok)}>
+  <h1>{blok.headline}</h1>
+</div>

@@ -1,0 +1,36 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import { cn } from '../lib/cn';
+import { Image } from 'astro:assets';
+
+const { blok } = Astro.props;
+---
+
+<section
+  class="min-h-[500px] w-screen text-gray-700 body-font"
+  {...storyblokEditable(blok)}>
+  <div
+    class="container mx-auto flex px-5 py-24 lg:flex-row flex-col items-center h-full">
+    <div class="lg:w-1/2 grid place-items-center px-12">
+      <h2
+        class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+        {blok.title}
+      </h2>
+      <p class="mb-8 leading-relaxed">
+        {blok.description}
+      </p>
+    </div>
+    <div
+      class={cn('object-cover border-2  rounded-2xl overflow-hidden lg:w-1/2', {
+        'order-first': blok.reverse,
+      })}>
+      <Image
+        width="600"
+        height="400"
+        class="object-cover aspect-video object-center rounded h-full w-full"
+        alt={blok.image.alt}
+        src={`${blok.image.filename}`}
+      />
+    </div>
+  </div>
+</section>

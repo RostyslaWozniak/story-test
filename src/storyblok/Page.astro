@@ -1,0 +1,9 @@
+---
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+
+const { blok } = Astro.props;
+---
+
+<div>
+  {blok.body.map((component) => <StoryblokComponent blok={component} />)}
+</div>

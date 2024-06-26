@@ -1,0 +1,17 @@
+---
+import Header from '../components/Header.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<html>
+  <head>
+    <title>{frontmatter.title}</title>
+  </head>
+  <body class="overflow-x-hidden">
+    <Header />
+    <main class="pt-24">
+      <slot />
+    </main>
+  </body>
+</html>

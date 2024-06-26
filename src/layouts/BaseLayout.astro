@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import Header from '../components/Header.astro';
 
 const { frontmatter } = Astro.props;
@@ -7,6 +8,7 @@ const { frontmatter } = Astro.props;
 <html>
   <head>
     <title>{frontmatter.title}</title>
+    <ViewTransitions />
   </head>
   <body class="overflow-x-hidden">
     <Header />

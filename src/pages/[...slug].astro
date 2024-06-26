@@ -1,21 +1,39 @@
 ---
-import { useStoryblok, useStoryblokApi } from '@storyblok/astro';
+import { useStoryblokApi } from '@storyblok/astro';
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+export async function getStaticPaths() {
+  const storyblokApi = useStoryblokApi();
+
+  const { data } = await storyblokApi.get('cdn/links', {
+    version: 'draft',
+  });
+  let links = data.links;
+  links = Object.values(links);
+
+  return links.map((link) => {
+    return {
+      params: {
+        slug: link.slug === 'home' ? undefined : link.slug,
+      },
+    };
+  });
+}
+
 const { slug } = Astro.params;
 
-const story = await useStoryblok(
-  `cdn/stories/${slug || 'home'}`,
+const storyblokApi = useStoryblokApi();
+
+const { data } = await storyblokApi.get(
+  `cdn/stories/${slug === undefined ? 'home' : slug}`,
   {
     version: 'draft',
     resolve_relations: ['popular-articles.articles'],
-  },
-
-  {},
-
-  Astro
+  }
 );
+
+const story = data.story;
 ---
 
 <BaseLayout frontmatter={story.content}>

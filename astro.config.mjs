@@ -5,6 +5,7 @@ import storyblok from '@storyblok/astro';
 import { loadEnv } from 'vite';
 import mkcert from 'vite-plugin-mkcert';
 import tailwind from '@astrojs/tailwind';
+import vercel from '@astrojs/vercel/serverless';
 const env = loadEnv('', process.cwd(), 'STORYBLOK');
 
 // https://astro.build/config
@@ -41,5 +42,6 @@ export default defineConfig({
 
     plugins: [mkcert()],
   },
-  output: 'server',
+  output: 'hybrid',
+  adapter: vercel(),
 });

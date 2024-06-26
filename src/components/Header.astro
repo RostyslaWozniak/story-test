@@ -1,6 +1,5 @@
 ---
-import { storyblokEditable, useStoryblokApi } from '@storyblok/astro';
-import { cn } from '../lib/cn';
+import { useStoryblokApi } from '@storyblok/astro';
 const storyblokApi = useStoryblokApi();
 const { data } = await storyblokApi.get('cdn/stories/config', {
   version: 'draft',
@@ -23,12 +22,7 @@ const { slug } = Astro.params;
             <li>
               <a
                 href={`/${menu.link.cached_url.replace('/', '')}`}
-                class:list={cn('hover:text-[#50b0ae]', {
-                  underline:
-                    slug !== undefined &&
-                    slug.replace('/', '') ===
-                      menu.link.cached_url.replace('/', ''),
-                })}>
+                class:list="hover:text-[#50b0ae]">
                 {menu.link.story.name}
               </a>
             </li>

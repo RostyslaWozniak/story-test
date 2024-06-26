@@ -37,7 +37,7 @@ export default defineConfig({
   ],
   vite: {
     server: {
-      https: true,
+      https: false,
     },
 
     plugins: [mkcert()],

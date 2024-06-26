@@ -42,6 +42,6 @@ export default defineConfig({
 
     plugins: [mkcert()],
   },
-  output: 'hybrid',
+  output: 'server',
   adapter: vercel(),
 });

@@ -35,17 +35,7 @@ export default defineConfig({
       },
     }),
   ],
-  vite: {
-    server: {
-      https: false,
-    },
 
-    plugins: [mkcert()],
-  },
   output: 'server',
-  adapter: vercel({
-    isr: {
-      expiration: 60,
-    },
-  }),
+  adapter: vercel(),
 });

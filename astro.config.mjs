@@ -43,5 +43,9 @@ export default defineConfig({
     plugins: [mkcert()],
   },
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    isr: {
+      expiration: 60 * 60 * 24,
+    },
+  }),
 });
